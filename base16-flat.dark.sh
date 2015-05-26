@@ -7,7 +7,7 @@ if [ "${TERM%%-*}" = 'linux' ]; then
     return 2>/dev/null || exit 0
 fi
 
-color00="2C/3E/50" # Base 00 - Black
+color00="1D/27/35" # Base 00 - Black
 color01="E7/4C/3C" # Base 08 - Red
 color02="2E/CC/71" # Base 0B - Green
 color03="F1/C4/0F" # Base 0A - Yellow
@@ -30,7 +30,7 @@ color19="7F/8C/8D" # Base 02
 color20="BD/C3/C7" # Base 04
 color21="f5/f5/f5" # Base 06
 color_foreground="e0/e0/e0" # Base 05
-color_background="2C/3E/50" # Base 00
+color_background="1D/27/35" # Base 00
 color_cursor="e0/e0/e0" # Base 05
 
 if [ -n "$TMUX" ]; then
@@ -75,22 +75,6 @@ printf $printf_template 18 $color18
 printf $printf_template 19 $color19
 printf $printf_template 20 $color20
 printf $printf_template 21 $color21
-
-# foreground / background / cursor color
-if [ -n "$ITERM_SESSION_ID" ]; then
-  # iTerm2 proprietary escape codes
-  printf $printf_template_custom Pg e0e0e0 # forground
-  printf $printf_template_custom Ph 2C3E50 # background
-  printf $printf_template_custom Pi e0e0e0 # bold color
-  printf $printf_template_custom Pj 7F8C8D # selection color
-  printf $printf_template_custom Pk e0e0e0 # selected text color
-  printf $printf_template_custom Pl e0e0e0 # cursor
-  printf $printf_template_custom Pm 2C3E50 # cursor text
-else
-  printf $printf_template_var 10 $color_foreground
-  printf $printf_template_var 11 $color_background
-  printf $printf_template_var 12 $color_cursor
-fi
 
 # clean up
 unset printf_template
